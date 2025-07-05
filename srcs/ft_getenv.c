@@ -23,18 +23,20 @@ char	*ft_getenv(char *name, char **env)
 {
 	int i;
 	int match;
-
+	int namelen;
+	
 	if (!name || !*name)
-		return NULL;
+	return NULL;
 	if (!env || !*env)
-		return NULL;
-
+	return NULL;
+	
+	namelen = ft_strlen(name);
 	i = 0;
 	while (env[i])
 	{
-		match = ft_matches(name, env[i]);
+		match = ft_match(name, env[i], namelen);
 		if (match)
-			return (char *)(env[i] + ft_strlen(name) + 1);
+			return (char *)(env[i] + namelen + 1);
 		i++;
 	}
 	return NULL;
